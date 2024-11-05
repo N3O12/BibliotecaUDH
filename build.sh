@@ -8,9 +8,9 @@ pip install -r requirements.txt
 # Convert static asset files
 python manage.py collectstatic --no-input
 
-#python manage.py makemigrations
+python manage.py makemigrations
 # Apply any outstanding database migrations
-#python manage.py migrate
+python manage.py migrate
 python manage.py shell << END
 from django.contrib.auth import get_user_model
 
