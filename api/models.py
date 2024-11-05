@@ -19,12 +19,14 @@ class Genero(models.Model):
         db_table = 'TB_GENERO'
 
     @classmethod
+    @classmethod
     def crear_generos_predefinidos(cls):
-        generos = [
+        try:
+            generos = [
             # Ficción General
             'Novela', 'Cuento', 'Poesía', 'Drama', 'Teatro', 'Guion',
-        'Literatura contemporánea', 'Literatura clásica', 'Literatura universal',
-        'Literatura experimental', 'Literatura epistolar', 'Saga', 'Antología',
+            'Literatura contemporánea', 'Literatura clásica', 'Literatura universal',
+            'Literatura experimental', 'Literatura epistolar', 'Saga', 'Antología',
         
         # Subgéneros de Ficción
         'Ciencia ficción', 'Fantasía', 'Fantasía épica', 'Fantasía urbana',
@@ -137,9 +139,11 @@ class Genero(models.Model):
         'Deportes', 'Fitness', 'Yoga', 'Pilates',
         'Entrenamiento personal', 'Nutrición deportiva',
         'Deportes extremos', 'Olimpismo', 'Historia del deporte'
-        ]
-        for genero in generos:
-            cls.objects.get_or_create(nombre=genero)
+            ]
+            for genero in generos:
+                cls.objects.get_or_create(nombre=genero)
+        except Exception as e:
+            print(f"Error al crear géneros predefinidos: {e}")
 
 class Libro(models.Model):
     titulo = models.CharField(max_length=200, db_column='LibroTitulo')
